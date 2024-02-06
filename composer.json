@@ -21,7 +21,9 @@
         "drupal/core-composer-scaffold": "^10.2",
         "drupal/core-project-message": "^10.2",
         "drupal/core-recommended": "^10.2",
-        "drupal/webform": "^6.2"
+        "drupal/devel": "^5.1",
+        "drupal/webform": "^6.2",
+        "kint-php/kint": "^5.1"
     },
     "conflict": {
         "drupal/drupal": "*"
