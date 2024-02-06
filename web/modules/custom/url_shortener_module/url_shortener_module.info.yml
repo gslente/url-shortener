@@ -1,0 +1,4 @@
+name: URL Shortener
+type: module
+description: 'A custom module for shortening URLs'
+core_version_requirement: ^8 || ^9 || ^10
