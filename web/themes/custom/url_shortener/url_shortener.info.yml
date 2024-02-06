@@ -1,0 +1,5 @@
+name: URL Shortener
+type: theme
+base theme: stable9
+description: 'A custom theme for url-shortener'
+core_version_requirement: '^8 || ^9 || ^10'
