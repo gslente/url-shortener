@@ -19,7 +19,8 @@
         "drupal/bootstrap": "^3.29",
         "drupal/core-composer-scaffold": "^10.2",
         "drupal/core-project-message": "^10.2",
-        "drupal/core-recommended": "^10.2"
+        "drupal/core-recommended": "^10.2",
+        "drupal/webform": "^6.2"
     },
     "conflict": {
         "drupal/drupal": "*"
