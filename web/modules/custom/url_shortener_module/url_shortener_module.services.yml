@@ -1,0 +1,4 @@
+services:
+  url_shortener_module.url_shortener:
+    class: Drupal\url_shortener_module\Service\UrlShortenerService
+    arguments: [ '@entity_type.manager', '@request_stack' ]
