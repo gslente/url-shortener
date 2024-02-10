@@ -33,7 +33,7 @@ class RedirectEventSubscriber implements EventSubscriberInterface {
         $request = $event->getRequest();
         $path = $request->getPathInfo();
 
-        if (strpos($path, '/redirect') === 0) {
+        if (strpos($path, '/articles') === 0) {
             if (!empty($request->query->get('og'))) {
                 $og = $request->query->get('og');
                 $url_shortener_service = \Drupal::service('url_shortener_module.url_shortener');

@@ -24,9 +24,9 @@ class UrlShortenerService {
 
     public function shorten_url($id, &$item){
         $shortened_url = $this->encode($id);
-        $url_object = Url::fromRoute('entity.node.canonical', ['node' => 101002], ['query' => ['og' => $shortened_url]]);
+        $url_object = Url::fromRoute('view.article_links.page_1', [], ['query' => ['og' => $shortened_url]]);
 
-        $item['#title'] = $this->request->getSchemeAndHttpHost() . '/redirect?og=' . $shortened_url;
+        $item['#title'] = $this->request->getSchemeAndHttpHost() . '/articles?og=' . $shortened_url;
         $item['#url'] = $url_object;
     }
 
