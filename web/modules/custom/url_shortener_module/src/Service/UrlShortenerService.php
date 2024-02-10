@@ -3,6 +3,7 @@
 namespace Drupal\url_shortener_module\Service;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use \Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class UrlShortenerService {
@@ -23,23 +24,40 @@ class UrlShortenerService {
 
     public function shorten_url($id, &$item){
         $shortened_url = $this->encode($id);
-        $item['#title'] = $this->request->getSchemeAndHttpHost() . '/' . $shortened_url;
+        $url_object = Url::fromRoute('entity.node.canonical', ['node' => 101002], ['query' => ['og' => $shortened_url]]);
+
+        $item['#title'] = $this->request->getSchemeAndHttpHost() . '/redirect?og=' . $shortened_url;
+        $item['#url'] = $url_object;
     }
 
-    private function encode($id){
-        $base = strlen(self::CHARS);
-        $chars = [];
+    public function lengthen_url($id){
+        return $this->decode($id);
+    }
 
-        while($id > 0){
-            $val = $id % $base;
-            $chars[] = self::CHARS[$val];
-            $id = floor( $id / $base );
+    private function encode($num, $b=62){
+        $base = self::CHARS;
+        $r = $num  % $b ;
+        $res = $base[$r];
+        $q = floor($num / $b);
+
+        while ($q) {
+          $r = $q % $b;
+          $q = floor($q/$b);
+          $res = $base[$r].$res;
         }
 
-        return implode( array_reverse($chars) );
+        return $res;
     }
-    
-    public function test(&$item){
-        $item['test'] = 'test';
+
+    private function decode($string){
+        $base = strlen(self::CHARS);
+        $limit = strlen($string);
+        $res = strpos($base, $string[0]);
+
+        for($i = 0; $i < $limit; $i++){
+            $res = $base * $res + strpos(self::CHARS, $string[$i]);
+        }
+
+        return $res;
     }
 }

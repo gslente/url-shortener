@@ -25,8 +25,8 @@ class UrlShortenerFieldFormatter extends LinkFormatter  {
     public function viewElements(FieldItemListInterface $items, $langcode) {
         $element = parent::viewElements($items, $langcode);
         $settings = $this->getSettings();
-    
         $id = $items->getEntity()->id();
+        
         foreach ($element as $index => &$item) {
             $url_shortener_service = \Drupal::service('url_shortener_module.url_shortener');
             $url_shortener_service->shorten_url($id, $item);

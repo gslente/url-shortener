@@ -2,3 +2,7 @@ services:
   url_shortener_module.url_shortener:
     class: Drupal\url_shortener_module\Service\UrlShortenerService
     arguments: [ '@entity_type.manager', '@request_stack' ]
+  url_shortener_module.event_subscriber:
+    class: '\Drupal\url_shortener_module\EventSubscriber\RedirectEventSubscriber'
+    tags:
+      - { name: 'event_subscriber' }
